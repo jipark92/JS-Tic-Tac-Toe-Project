@@ -1,0 +1,32 @@
+.main-container{
+    height: 100vh;
+    width: 100vw;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'League Spartan', sans-serif;
+}
+
+.game-board {
+    display:grid;
+    grid-template-columns: 75px 75px 75px;
+    grid-template-rows: 75px 75px 75px;
+}
+
+.box {
+    border: 1px solid black ;
+}
+
+.restart-Btn {
+    height: 4rem;
+    width: 10rem;
+    font-size: 2rem;
+}
+
+.restart-Btn:hover{
+    cursor: pointer;
+    font-size: 2.5rem;
+}
+
