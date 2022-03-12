@@ -142,3 +142,7 @@ h1 {
 .score-board2 {
     color: red;
 }
+
+a {
+    text-decoration: none;
+}
