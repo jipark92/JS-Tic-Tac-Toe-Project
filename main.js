@@ -81,7 +81,6 @@ const myGameModule = (() => {
             }
     };
 
-
     //check for winner function WORK ON THIS 
     const checkWinner = () =>{
         const topLeft = pressGrids[0].textContent
@@ -95,59 +94,57 @@ const myGameModule = (() => {
         const bottomRight = pressGrids[8].textContent
 
         let winner = "";
+
         //horizontal win combination
         if (topLeft && topLeft === topMiddle && topLeft === topRight){
-            isStartGame = false;
-            playerTwoTurn = false;
             winner = topLeft;
             displayWinner(topLeft);
         }   else if (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight){
-                isStartGame = false;
-                playerTwoTurn = false;
                 winner = middleLeft;
                 displayWinner(middleLeft);
         }   else if(bottomLeft && bottomLeft === bottomMiddle && bottomLeft === bottomRight){
-                isStartGame = false;
-                playerTwoTurn = false;
                 winner = bottomLeft;
                 displayWinner(bottomLeft);
         //vertical win combination
         }   else if(topLeft && topLeft === middleLeft && topLeft === bottomLeft){
-                isStartGame = false;
-                playerTwoTurn = false;
                 winner = topLeft;
                 displayWinner(topLeft);
         }   else if(topMiddle && topMiddle === middleMiddle && topMiddle === bottomMiddle){
-                isStartGame = false;
-                playerTwoTurn = false;
                 winner = topMiddle;
                 displayWinner(topMiddle);
         }   else if(topRight && topRight === middleRight && topRight === bottomRight){
-                isStartGame = false;
-                playerTwoTurn = false;
                 winner = topRight;
                 displayWinner(topRight);
         //diagnol win combination
         }   else if(topLeft && topLeft === middleMiddle && topLeft === bottomRight){
-                isStartGame = false;
-                playerTwoTurn = false;
                 winner = topLeft;
                 displayWinner(topLeft);
         }   else if(topRight && topRight === middleMiddle && topRight === bottomLeft){
-                isStartGame = false;
-                playerTwoTurn = false;
                 winner = topRight;
                 displayWinner(topRight);
-        }   else if(topLeft && topMiddle && topRight && middleLeft && middleMiddle & middleRight && bottomLeft && bottomMiddle && bottomRight){
+        }   else if(topLeft && topMiddle && topRight && middleLeft && middleMiddle && middleRight && bottomLeft && bottomMiddle && bottomRight){
                 displayWinnerText.textContent = "ITS A DRAW"
         }
     };
 
+    const score1 = document.querySelector('.score-board1');
+    const score2 = document.querySelector('.score-board2');
+
+    let playerOneScore = 0;
+    let playerTwoScore = 0;
+
     const displayWinner = (winner)=>{
+        isStartGame = false;
+        playerTwoTurn = false;
+
         if (winner === 'X'){
-            displayWinnerText.textContent = `${player1.name} is the winner`
+            displayWinnerText.textContent = `${player1.name} is the WINNER!!!`
+            playerOneScore++;
+            score1.textContent = `${playerOneScore}`
         } else {
-            displayWinnerText.textContent = `${player2.name} is the winner`
+            displayWinnerText.textContent = `${player2.name} is the WINNER!!!`
+            playerTwoScore++;
+            score2.textContent = `${playerTwoScore}`
         }
     }
     
@@ -170,9 +167,6 @@ const myGameModule = (() => {
 
             playerArray.pop()
             playerArray.pop()
-
-            playerOneChoice = "";
-            playerTwoChoice = "";
             
             displayWinnerText.textContent = "";
 
