@@ -81,6 +81,7 @@ const myGameModule = (() => {
             }
     };
 
+
     //check for winner function WORK ON THIS 
     const checkWinner = () =>{
         const topLeft = pressGrids[0].textContent
@@ -94,17 +95,61 @@ const myGameModule = (() => {
         const bottomRight = pressGrids[8].textContent
 
         let winner = "";
-        
-            if (topLeft && topLeft === topMiddle && topLeft === topRight){
+        //horizontal win combination
+        if (topLeft && topLeft === topMiddle && topLeft === topRight){
+            isStartGame = false;
+            playerTwoTurn = false;
+            winner = topLeft;
+            displayWinner(topLeft);
+        }   else if (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight){
                 isStartGame = false;
+                playerTwoTurn = false;
+                winner = middleLeft;
+                displayWinner(middleLeft);
+        }   else if(bottomLeft && bottomLeft === bottomMiddle && bottomLeft === bottomRight){
+                isStartGame = false;
+                playerTwoTurn = false;
+                winner = bottomLeft;
+                displayWinner(bottomLeft);
+        //vertical win combination
+        }   else if(topLeft && topLeft === middleLeft && topLeft === bottomLeft){
+                isStartGame = false;
+                playerTwoTurn = false;
                 winner = topLeft;
-            if (winner === 'X'){
-                displayWinnerText.textContent = `${player1.name} is the winner`
-            } else {
-                displayWinnerText.textContent = `${player2.name} is the winner`
-            }
-        }  
+                displayWinner(topLeft);
+        }   else if(topMiddle && topMiddle === middleMiddle && topMiddle === bottomMiddle){
+                isStartGame = false;
+                playerTwoTurn = false;
+                winner = topMiddle;
+                displayWinner(topMiddle);
+        }   else if(topRight && topRight === middleRight && topRight === bottomRight){
+                isStartGame = false;
+                playerTwoTurn = false;
+                winner = topRight;
+                displayWinner(topRight);
+        //diagnol win combination
+        }   else if(topLeft && topLeft === middleMiddle && topLeft === bottomRight){
+                isStartGame = false;
+                playerTwoTurn = false;
+                winner = topLeft;
+                displayWinner(topLeft);
+        }   else if(topRight && topRight === middleMiddle && topRight === bottomLeft){
+                isStartGame = false;
+                playerTwoTurn = false;
+                winner = topRight;
+                displayWinner(topRight);
+        }   else if(topLeft && topMiddle && topRight && middleLeft && middleMiddle & middleRight && bottomLeft && bottomMiddle && bottomRight){
+                displayWinnerText.textContent = "ITS A DRAW"
+        }
     };
+
+    const displayWinner = (winner)=>{
+        if (winner === 'X'){
+            displayWinnerText.textContent = `${player1.name} is the winner`
+        } else {
+            displayWinnerText.textContent = `${player2.name} is the winner`
+        }
+    }
     
     //display that game has started or stopped.
     const colorStartRestart = ()=>{
@@ -128,8 +173,7 @@ const myGameModule = (() => {
 
             playerOneChoice = "";
             playerTwoChoice = "";
-            player1Name.value ="";
-            player2Name.value = "";
+            
             displayWinnerText.textContent = "";
 
             colorStartRestart()
