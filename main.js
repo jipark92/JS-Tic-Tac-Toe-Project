@@ -180,5 +180,5 @@ const myGameModule = (() => {
         })
     }
     restartGame();
-    return {getNameMarker, startGame};
+    return {getNameMarker, startGame, restartGame,};
 })();
