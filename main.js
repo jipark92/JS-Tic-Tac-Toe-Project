@@ -4,32 +4,29 @@ const getNameMarker = function (name,marker){
 };
 
 const myGameModule = (() => {
-    //html querySelectors
     const player1Name = document.querySelector('.player-1');
     const player2Name = document.querySelector('.player-2');
     const playerTurnText = document.querySelector('.player-turn-text');
     const startGameBtn = document.querySelector('.start-game-btn');
     const pressGrids = document.querySelectorAll('.box');
     const restartGameBtns = document.querySelector('.restart-btn');
+    const displayWinnerText = document.querySelector('.display-winner')
 
-    //holds name and marker property
     const playerArray = [];
 
     //assign player name and marker auto assigned marker
     let player1 = getNameMarker(player1Name.value, "X");
     let player2 = getNameMarker(player2Name.value, "O");
     
-    //i will use this somehow to make taking turns work
     let playerOneTurn = true;
     let playerTwoTurn = false; 
 
-    //start game by default is false. must flip it to true to start when button start is clicked.
     let isStartGame = false;
 
     //start game button
     const startGame = function(){
         startGameBtn.addEventListener('click', ()=>{
-            //push player info to playerArray
+
             player1 = getNameMarker(player1Name.value, "X");
             player2 = getNameMarker(player2Name.value, "O");
             playerArray.push(player1, player2);
@@ -37,17 +34,11 @@ const myGameModule = (() => {
             isStartGame = true;
             playerOneTurn = true;
 
-            console.log(playerArray);
             playerTurnDisplay();
             colorStartRestart()
-            //board becomes active and player can start clicking on box to place marker.
         })
     };
     startGame();
-
-    //player 1 board
-    let playerOneChoice = "";
-    let playerTwoChoice = "";
  
     //pressing grid marks X or O
     const markerOnGrid = function(){
@@ -56,30 +47,22 @@ const myGameModule = (() => {
                 if (playerOneTurn && isStartGame){
                     pressGrid.textContent = playerArray[0].marker;
 
-                    playerOneChoice += pressGrid.value
-                    console.log("p1 X: ", playerOneChoice);
-
-                    
-
                     pressGrid.classList.toggle('disabled')
 
                     playerOneTurn = false;
                     playerTwoTurn = true;
 
+                    checkWinner();
                     playerTurnDisplay();
                 } else if(playerTwoTurn){
                     pressGrid.textContent = playerArray[1].marker;
-
-                    playerTwoChoice += pressGrid.value
-                    console.log("p2 O:", playerTwoChoice);
-
-                  
 
                     pressGrid.classList.toggle('disabled')
 
                     playerOneTurn = true;
                     playerTwoTurn = false;
 
+                    checkWinner();
                     playerTurnDisplay();
                 }
             })
@@ -100,7 +83,27 @@ const myGameModule = (() => {
 
     //check for winner function WORK ON THIS 
     const checkWinner = () =>{
-       
+        const topLeft = pressGrids[0].textContent
+        const topMiddle = pressGrids[1].textContent
+        const topRight = pressGrids[2].textContent
+        const middleLeft = pressGrids[3].textContent
+        const middleMiddle = pressGrids[4].textContent
+        const middleRight = pressGrids[5].textContent
+        const bottomLeft = pressGrids[6].textContent
+        const bottomMiddle = pressGrids[7].textContent
+        const bottomRight = pressGrids[8].textContent
+
+        let winner = "";
+        
+            if (topLeft && topLeft === topMiddle && topLeft === topRight){
+                isStartGame = false;
+                winner = topLeft;
+            if (winner === 'X'){
+                displayWinnerText.textContent = `${player1.name} is the winner`
+            } else {
+                displayWinnerText.textContent = `${player2.name} is the winner`
+            }
+        }  
     };
     
     //display that game has started or stopped.
@@ -122,12 +125,12 @@ const myGameModule = (() => {
 
             playerArray.pop()
             playerArray.pop()
-            console.log(playerArray)
 
             playerOneChoice = "";
             playerTwoChoice = "";
             player1Name.value ="";
             player2Name.value = "";
+            displayWinnerText.textContent = "";
 
             colorStartRestart()
 
@@ -141,18 +144,3 @@ const myGameModule = (() => {
     restartGame();
     return {getNameMarker, startGame};
 })();
-
-    // //ways to win 
-    // const winningArrays = [
-    //     //horizontal
-    //     [0,1,2],
-    //     [3,4,5],
-    //     [6,7,8],
-    //     //vertical
-    //     [0,3,6],
-    //     [1,4,7],
-    //     [2,5,8],
-    //     //diagnol
-    //     [0,4,8],
-    //     [2,4,6]
-    // ];
