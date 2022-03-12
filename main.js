@@ -24,8 +24,11 @@ const myGameModule = (() => {
     let isStartGame = false;
 
     //start game button
-    const startGame = function(){
+    const startGame = function(e){
         startGameBtn.addEventListener('click', ()=>{
+            
+            startGameBtn.classList.add('disabled');
+            restartGameBtns.classList.remove('disabled');
 
             player1 = getNameMarker(player1Name.value, "X");
             player2 = getNameMarker(player2Name.value, "O");
@@ -48,10 +51,9 @@ const myGameModule = (() => {
                     pressGrid.textContent = playerArray[0].marker;
 
                     pressGrid.classList.toggle('disabled');
-
                     playerOneTurn = false;
                     playerTwoTurn = true;
-
+                    
                     checkWinner();
                     playerTurnDisplay();
                 } else if(playerTwoTurn){
@@ -150,7 +152,7 @@ const myGameModule = (() => {
     
     //display that game has started or stopped.
     const colorStartRestart = ()=>{
-        const border = document.querySelector('.game-board')
+        const border = document.querySelector('.game-board');
         if (!isStartGame){
             border.style.border= "3px solid red";
         } else if (isStartGame) {
@@ -165,12 +167,14 @@ const myGameModule = (() => {
             playerOneTurn = false;
             playerTwoTurn = false;
 
-            playerArray.pop()
-            playerArray.pop()
+            playerArray.pop();
+            playerArray.pop();
             
             displayWinnerText.textContent = "";
 
-            colorStartRestart()
+            startGameBtn.classList.remove('disabled');
+
+            colorStartRestart();
 
             pressGrids.forEach((pressGrid)=>{
                 pressGrid.textContent = "";
@@ -180,5 +184,20 @@ const myGameModule = (() => {
         })
     };
     restartGame();
-    return {getNameMarker, startGame, restartGame,};
+
+    const resetScore = () =>{
+        const resetScoreBtn = document.querySelector('.reset-scoreboard');
+
+        resetScoreBtn.addEventListener('click', ()=>{
+            playerOneScore = 0;
+            playerTwoScore = 0;
+            score1.textContent = `${playerOneScore}`;
+            score2.textContent = `${playerTwoScore}`;
+        })
+    };
+    resetScore();
+    window.addEventListener('DOMContentLoaded',()=>{
+        restartGameBtns.classList.add('disabled');
+    })
+    return {getNameMarker, startGame, restartGame};
 })();
