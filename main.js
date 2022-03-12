@@ -26,7 +26,7 @@ const myGameModule = (() => {
     let playerTwoChoice = "";
 
     //ways to win 
-    const winningArray = [
+    const winningArrays = [
         //horizontal
         [0,1,2],
         [3,4,5],
@@ -49,10 +49,13 @@ const myGameModule = (() => {
         startGameBtn.addEventListener('click', ()=>{
             //push player info to playerArray
             playerArray.push(player1, player2);
+
             isStartGame = true;
             playerOneTurn = true;
+
             console.log(playerArray);
             playerTurnDisplay();
+            colorStartRestart()
             //board becomes active and player can start clicking on box to place marker.
         })
     };
@@ -63,20 +66,31 @@ const myGameModule = (() => {
         pressGrids.forEach((pressGrid) => {
             pressGrid.addEventListener('click', ()=>{
                 if (playerOneTurn === true && isStartGame === true){
-                    pressGrid.textContent = "X";
+                    pressGrid.textContent = playerArray[0].marker;
+
                     playerOneChoice += pressGrid.value
-                    console.log("p1:", playerOneChoice);
+                    console.log("p1 X: ", playerOneChoice);
+
+                    checkWinner();
+                    // console.log(winningArrays);
+
                     pressGrid.classList.toggle('disabled')
+
                     playerOneTurn = false;
                     playerTwoTurn = true;
+
                     playerTurnDisplay();
                 } else if( playerTwoTurn === true){
-                    pressGrid.textContent = "O";
+                    pressGrid.textContent = playerArray[1].marker;
+
                     playerTwoChoice += pressGrid.value
                     // console.log("p2:", playerTwoChoice);
+
                     pressGrid.classList.toggle('disabled')
+
                     playerOneTurn = true;
                     playerTwoTurn = false;
+
                     playerTurnDisplay();
                 }
             })
@@ -95,21 +109,44 @@ const myGameModule = (() => {
             }
     };
 
+    //check for winner function
     const checkWinner = () =>{
+        let splitString = playerOneChoice.split("");
+        console.log(splitString);
 
+        const winningSlots = winningArrays.every((item)=>{
+            console.log(item[0])
+        })
+        
     };
+    
 
+    //display that game has started or stopped.
+    const colorStartRestart = ()=>{
+        const border = document.querySelector('.game-board')
+        if (isStartGame ===  false){
+            border.style.border= "3px solid red";
+        }
+        else if (isStartGame === true) {
+            border.style.border = "3px solid #22C55E";
+        }
+    };
+  
     //restart game
     const restartGame = () => {
         restartGameBtns.addEventListener('click',()=>{
             isStartGame = false;
             playerOneTurn = false;
             playerTwoTurn = false;
+
             playerArray.pop()
             playerArray.pop()
             console.log(playerArray)
+
             playerOneChoice = "";
             playerTwoChoice = "";
+
+            colorStartRestart()
             pressGrids.forEach((pressGrid)=>{
                 pressGrid.textContent = "";
                 playerTurnText.textContent = "";
@@ -120,3 +157,11 @@ const myGameModule = (() => {
     restartGame();
     return {getNameMarker, startGame};
 })();
+
+
+
+
+// setTimeout(()=>{
+//     border.style.border = "5px solid green";
+
+// },1000)
