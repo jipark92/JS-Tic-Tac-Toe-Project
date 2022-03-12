@@ -22,7 +22,7 @@ body{
     height: 2rem;
     width: 5rem;
     font-size: 1.1rem;
-    margin: 1rem;
+   
 }
 
 .start-game-btn:hover{
@@ -32,16 +32,16 @@ body{
 
 .game-board {
     display:grid;
-    grid-template-columns: 75px 75px 75px;
-    grid-template-rows: 75px 75px 75px;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
 }
 
 .box {
-    border: 1px solid black ;
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3.5rem;
+    font-size: 6rem;
     background-color: white;
 }
 
@@ -49,9 +49,14 @@ body{
     background-color: #F1F5F9;
 }
 
-.restart-btn {
-    margin: 1rem;
+.button-container{
+    margin-top: 2.5rem;
+    width: 15rem;
+    display: flex;
+    justify-content: space-evenly;
+}
 
+.restart-btn {
     height: 2rem;
     width: 5rem;
     font-size: 1.1rem;
@@ -66,4 +71,29 @@ body{
     pointer-events: none;
     cursor:not-allowed;
     background-color:#DCFCE7;
+}
+
+.player-turn-text{
+    font-size: 2rem;
+}
+
+.display-winner{
+    font-size: 2.2rem;
+    font-weight:bolder; 
+}
+
+.player-1 {
+    font-size: 1rem;
+}
+
+.player-2 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 1.4rem;
+}
+
+h1 {
+    font-size: 3.5rem;
 }
