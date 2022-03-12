@@ -31,15 +31,26 @@
     justify-content: center;
     align-items: center;
     font-size: 3.5rem;
+    background-color: white;
 }
 
-.restart-Btn {
-    height: 3rem;
-    width: 7rem;
-    font-size: 1.5rem;
+.box:hover{
+    background-color: #F1F5F9;
 }
 
-.restart-Btn:hover{
+.restart-btn {
+    height: 2rem;
+    width: 5rem;
+    font-size: 1.1rem;
+}
+
+.restart-btn:hover{
     cursor: pointer;
-    font-size: 1.7rem;
+    font-size: 1.2rem;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor:not-allowed;
+    background-color:#06B6D4;
 }
