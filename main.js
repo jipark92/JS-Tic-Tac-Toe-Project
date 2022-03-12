@@ -35,7 +35,7 @@ const myGameModule = (() => {
             playerOneTurn = true;
 
             playerTurnDisplay();
-            colorStartRestart()
+            colorStartRestart();
         })
     };
     startGame();
@@ -47,7 +47,7 @@ const myGameModule = (() => {
                 if (playerOneTurn && isStartGame){
                     pressGrid.textContent = playerArray[0].marker;
 
-                    pressGrid.classList.toggle('disabled')
+                    pressGrid.classList.toggle('disabled');
 
                     playerOneTurn = false;
                     playerTwoTurn = true;
@@ -57,7 +57,7 @@ const myGameModule = (() => {
                 } else if(playerTwoTurn){
                     pressGrid.textContent = playerArray[1].marker;
 
-                    pressGrid.classList.toggle('disabled')
+                    pressGrid.classList.toggle('disabled');
 
                     playerOneTurn = true;
                     playerTwoTurn = false;
@@ -83,15 +83,15 @@ const myGameModule = (() => {
 
     //check for winner function WORK ON THIS 
     const checkWinner = () =>{
-        const topLeft = pressGrids[0].textContent
-        const topMiddle = pressGrids[1].textContent
-        const topRight = pressGrids[2].textContent
-        const middleLeft = pressGrids[3].textContent
-        const middleMiddle = pressGrids[4].textContent
-        const middleRight = pressGrids[5].textContent
-        const bottomLeft = pressGrids[6].textContent
-        const bottomMiddle = pressGrids[7].textContent
-        const bottomRight = pressGrids[8].textContent
+        const topLeft = pressGrids[0].textContent;
+        const topMiddle = pressGrids[1].textContent;
+        const topRight = pressGrids[2].textContent;
+        const middleLeft = pressGrids[3].textContent;
+        const middleMiddle = pressGrids[4].textContent;
+        const middleRight = pressGrids[5].textContent;
+        const bottomLeft = pressGrids[6].textContent;
+        const bottomMiddle = pressGrids[7].textContent;
+        const bottomRight = pressGrids[8].textContent;
 
         let winner = "";
 
@@ -123,7 +123,7 @@ const myGameModule = (() => {
                 winner = topRight;
                 displayWinner(topRight);
         }   else if(topLeft && topMiddle && topRight && middleLeft && middleMiddle && middleRight && bottomLeft && bottomMiddle && bottomRight){
-                displayWinnerText.textContent = "ITS A DRAW"
+                displayWinnerText.textContent = "ITS A DRAW";
         }
     };
 
@@ -138,15 +138,15 @@ const myGameModule = (() => {
         playerTwoTurn = false;
 
         if (winner === 'X'){
-            displayWinnerText.textContent = `${player1.name} is the WINNER!!!`
+            displayWinnerText.textContent = `${player1.name} is the WINNER!!!`;
             playerOneScore++;
-            score1.textContent = `${playerOneScore}`
+            score1.textContent = `${playerOneScore}`;
         } else {
-            displayWinnerText.textContent = `${player2.name} is the WINNER!!!`
+            displayWinnerText.textContent = `${player2.name} is the WINNER!!!`;
             playerTwoScore++;
-            score2.textContent = `${playerTwoScore}`
+            score2.textContent = `${playerTwoScore}`;
         }
-    }
+    };
     
     //display that game has started or stopped.
     const colorStartRestart = ()=>{
@@ -178,7 +178,7 @@ const myGameModule = (() => {
                 pressGrid.classList.remove('disabled')
             })
         })
-    }
+    };
     restartGame();
     return {getNameMarker, startGame, restartGame,};
 })();
