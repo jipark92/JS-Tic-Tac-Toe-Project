@@ -1,17 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
+*{
+    font-family: 'Mukta', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #FEF08A, #D9F99D,#99F6E4);
+}
+
 .main-container{
-    height: 50vh;
-    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    font-family: 'League Spartan', sans-serif;
 }
 
 .start-game-btn{
     height: 2rem;
     width: 5rem;
     font-size: 1.1rem;
+    margin: 1rem;
 }
 
 .start-game-btn:hover{
@@ -39,6 +50,8 @@
 }
 
 .restart-btn {
+    margin: 1rem;
+
     height: 2rem;
     width: 5rem;
     font-size: 1.1rem;
@@ -52,5 +65,5 @@
 .disabled {
     pointer-events: none;
     cursor:not-allowed;
-    background-color:#06B6D4;
+    background-color:#DCFCE7;
 }
