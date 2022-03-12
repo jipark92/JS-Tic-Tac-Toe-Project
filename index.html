@@ -14,30 +14,33 @@
         <h1 class="title">Tic-Tac-Toe</h1>
 
         <div class="player-name">
-            <p>Player1:</p>
-            <input  type="text" class="player-1" placeholder="player1">
-            <p> Player2:</p>
-            <input type="text" class="player-2" placeholder="player2">
+            <p>Player1 (X):</p>
+            <input  type="text" class="player-1" placeholder="player1" maxlength="12">
+            <p> Player2 (O):</p>
+            <p></p> 
+            <input type="text" class="player-2" placeholder="player2" maxlength="12">
         </div>
 
-        <button class="start-game-btn">Start</button>
+        <div class="button-container">
+            <button class="start-game-btn">Start</button>
+            <button class="restart-btn">Restart</button>
+        </div>
 
         <h3 class="player-turn-text"></h3>
 
         <div class="game-board">
-            <button class="box" value="0"></button>
-            <button class="box" value="1"></button>
-            <button class="box" value="2"></button>
-            <button class="box" value="3"></button>
-            <button class="box" value="4"></button>
-            <button class="box" value="5"></button>
-            <button class="box" value="6"></button>
-            <button class="box" value="7"></button>
-            <button class="box" value="8"></button>
+            <button class="box" id="top-left" value="0"></button>
+            <button class="box" id="top-middle" value="1"></button>
+            <button class="box" id="top-right" value="2"></button>
+            <button class="box" id="middle-left" value="3"></button>
+            <button class="box" id="middle-middle" value="4"></button>
+            <button class="box" id="middle-right" value="5"></button>
+            <button class="box" id="bottom-left" value="6"></button>
+            <button class="box" id="bottom-middle" value="7"></button>
+            <button class="box" id="bottom-right" value="8"></button>
         </div>
-        
-        <button class="restart-btn">Restart</button>
-   
+
+        <p class="display-winner"></p>
     </div>
 </body>
 </html>
