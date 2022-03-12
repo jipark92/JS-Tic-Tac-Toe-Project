@@ -44,7 +44,6 @@ const myGameModule = (() => {
     let player1 = getNameMarker(player1Name, "X");
     let player2 = getNameMarker(player2Name, "O");
     
-
     //start game button
     const startGame = function(){
         startGameBtn.addEventListener('click', ()=>{
@@ -74,7 +73,7 @@ const myGameModule = (() => {
                 } else if( playerTwoTurn === true){
                     pressGrid.textContent = "O";
                     playerTwoChoice += pressGrid.value
-                    console.log("p2:", playerTwoChoice);
+                    // console.log("p2:", playerTwoChoice);
                     pressGrid.classList.toggle('disabled')
                     playerOneTurn = true;
                     playerTwoTurn = false;
@@ -96,6 +95,10 @@ const myGameModule = (() => {
             }
     };
 
+    const checkWinner = () =>{
+
+    };
+
     //restart game
     const restartGame = () => {
         restartGameBtns.addEventListener('click',()=>{
@@ -105,6 +108,8 @@ const myGameModule = (() => {
             playerArray.pop()
             playerArray.pop()
             console.log(playerArray)
+            playerOneChoice = "";
+            playerTwoChoice = "";
             pressGrids.forEach((pressGrid)=>{
                 pressGrid.textContent = "";
                 playerTurnText.textContent = "";
