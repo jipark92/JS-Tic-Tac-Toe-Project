@@ -20,23 +20,18 @@ const myGameModule = (() => {
     
     let playerOneTurn = true;
     let playerTwoTurn = false; 
-
     let isStartGame = false;
 
     //start game button
     const startGame = function(e){
         startGameBtn.addEventListener('click', ()=>{
-            
             startGameBtn.classList.add('disabled');
             restartGameBtns.classList.remove('disabled');
-
             player1 = getNameMarker(player1Name.value, "X");
             player2 = getNameMarker(player2Name.value, "O");
             playerArray.push(player1, player2);
-
             isStartGame = true;
             playerOneTurn = true;
-
             _playerTurnDisplay();
             _colorStartRestart();
         })
@@ -49,21 +44,16 @@ const myGameModule = (() => {
             pressGrid.addEventListener('click', ()=>{
                 if (playerOneTurn && isStartGame){
                     pressGrid.textContent = playerArray[0].marker;
-
                     pressGrid.classList.toggle('disabled');
                     playerOneTurn = false;
                     playerTwoTurn = true;
-                    
                     _checkWinner();
                     _playerTurnDisplay();
                 } else if(playerTwoTurn){
                     pressGrid.textContent = playerArray[1].marker;
-
                     pressGrid.classList.toggle('disabled');
-
                     playerOneTurn = true;
                     playerTwoTurn = false;
-
                     _checkWinner();
                     _playerTurnDisplay();
                 }
@@ -74,7 +64,6 @@ const myGameModule = (() => {
 
     //player turn display text
     const _playerTurnDisplay = function() {
-            //player turn text
             playerTurnText.textContent = `${player1.name}'s turn`;
             if (playerOneTurn){
                 playerTurnText.textContent = `${player1.name}'s turn`;
@@ -83,7 +72,7 @@ const myGameModule = (() => {
             }
     };
 
-    //check for winner function WORK ON THIS 
+    //check for winner
     const _checkWinner = () =>{
         const topLeft = pressGrids[0].textContent;
         const topMiddle = pressGrids[1].textContent;
@@ -135,10 +124,10 @@ const myGameModule = (() => {
     let playerOneScore = 0;
     let playerTwoScore = 0;
 
+    //display winner
     const _displayWinner = (winner)=>{
         isStartGame = false;
         playerTwoTurn = false;
-
         if (winner === 'X'){
             displayWinnerText.textContent = `${player1.name} is the WINNER!!!`;
             playerOneScore++;
@@ -150,7 +139,7 @@ const myGameModule = (() => {
         }
     };
     
-    //display that game has started or stopped.
+    //color sign that game has started or stopped.
     const _colorStartRestart = ()=>{
         const border = document.querySelector('.game-board');
         if (!isStartGame){
@@ -166,16 +155,11 @@ const myGameModule = (() => {
             isStartGame = false;
             playerOneTurn = false;
             playerTwoTurn = false;
-
             playerArray.pop();
             playerArray.pop();
-            
             displayWinnerText.textContent = "";
-
             startGameBtn.classList.remove('disabled');
-
             _colorStartRestart();
-
             pressGrids.forEach((pressGrid)=>{
                 pressGrid.textContent = "";
                 playerTurnText.textContent = "";
@@ -185,9 +169,9 @@ const myGameModule = (() => {
     };
     restartGame();
 
+    //reset score
     const resetScore = () =>{
         const resetScoreBtn = document.querySelector('.reset-scoreboard');
-
         resetScoreBtn.addEventListener('click', ()=>{
             playerOneScore = 0;
             playerTwoScore = 0;
@@ -196,6 +180,7 @@ const myGameModule = (() => {
         })
     };
     resetScore();
+    //start with disabled restart button
     window.addEventListener('DOMContentLoaded',()=>{
         restartGameBtns.classList.add('disabled');
     })
