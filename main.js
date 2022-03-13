@@ -37,8 +37,8 @@ const myGameModule = (() => {
             isStartGame = true;
             playerOneTurn = true;
 
-            playerTurnDisplay();
-            colorStartRestart();
+            _playerTurnDisplay();
+            _colorStartRestart();
         })
     };
     startGame();
@@ -54,8 +54,8 @@ const myGameModule = (() => {
                     playerOneTurn = false;
                     playerTwoTurn = true;
                     
-                    checkWinner();
-                    playerTurnDisplay();
+                    _checkWinner();
+                    _playerTurnDisplay();
                 } else if(playerTwoTurn){
                     pressGrid.textContent = playerArray[1].marker;
 
@@ -64,8 +64,8 @@ const myGameModule = (() => {
                     playerOneTurn = true;
                     playerTwoTurn = false;
 
-                    checkWinner();
-                    playerTurnDisplay();
+                    _checkWinner();
+                    _playerTurnDisplay();
                 }
             })
         })
@@ -73,7 +73,7 @@ const myGameModule = (() => {
     markerOnGrid();
 
     //player turn display text
-    const playerTurnDisplay = function() {
+    const _playerTurnDisplay = function() {
             //player turn text
             playerTurnText.textContent = `${player1.name}'s turn`;
             if (playerOneTurn){
@@ -84,7 +84,7 @@ const myGameModule = (() => {
     };
 
     //check for winner function WORK ON THIS 
-    const checkWinner = () =>{
+    const _checkWinner = () =>{
         const topLeft = pressGrids[0].textContent;
         const topMiddle = pressGrids[1].textContent;
         const topRight = pressGrids[2].textContent;
@@ -100,30 +100,30 @@ const myGameModule = (() => {
         //horizontal win combination
         if (topLeft && topLeft === topMiddle && topLeft === topRight){
             winner = topLeft;
-            displayWinner(topLeft);
+            _displayWinner(topLeft);
         }   else if (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight){
                 winner = middleLeft;
-                displayWinner(middleLeft);
+                _displayWinner(middleLeft);
         }   else if(bottomLeft && bottomLeft === bottomMiddle && bottomLeft === bottomRight){
                 winner = bottomLeft;
-                displayWinner(bottomLeft);
+                _displayWinner(bottomLeft);
         //vertical win combination
         }   else if(topLeft && topLeft === middleLeft && topLeft === bottomLeft){
                 winner = topLeft;
-                displayWinner(topLeft);
+                _displayWinner(topLeft);
         }   else if(topMiddle && topMiddle === middleMiddle && topMiddle === bottomMiddle){
                 winner = topMiddle;
-                displayWinner(topMiddle);
+                _displayWinner(topMiddle);
         }   else if(topRight && topRight === middleRight && topRight === bottomRight){
                 winner = topRight;
-                displayWinner(topRight);
+                _displayWinner(topRight);
         //diagnol win combination
         }   else if(topLeft && topLeft === middleMiddle && topLeft === bottomRight){
                 winner = topLeft;
-                displayWinner(topLeft);
+                _displayWinner(topLeft);
         }   else if(topRight && topRight === middleMiddle && topRight === bottomLeft){
                 winner = topRight;
-                displayWinner(topRight);
+                _displayWinner(topRight);
         }   else if(topLeft && topMiddle && topRight && middleLeft && middleMiddle && middleRight && bottomLeft && bottomMiddle && bottomRight){
                 displayWinnerText.textContent = "ITS A DRAW";
         }
@@ -135,7 +135,7 @@ const myGameModule = (() => {
     let playerOneScore = 0;
     let playerTwoScore = 0;
 
-    const displayWinner = (winner)=>{
+    const _displayWinner = (winner)=>{
         isStartGame = false;
         playerTwoTurn = false;
 
@@ -151,7 +151,7 @@ const myGameModule = (() => {
     };
     
     //display that game has started or stopped.
-    const colorStartRestart = ()=>{
+    const _colorStartRestart = ()=>{
         const border = document.querySelector('.game-board');
         if (!isStartGame){
             border.style.border= "3px solid red";
@@ -174,7 +174,7 @@ const myGameModule = (() => {
 
             startGameBtn.classList.remove('disabled');
 
-            colorStartRestart();
+            _colorStartRestart();
 
             pressGrids.forEach((pressGrid)=>{
                 pressGrid.textContent = "";
@@ -199,5 +199,5 @@ const myGameModule = (() => {
     window.addEventListener('DOMContentLoaded',()=>{
         restartGameBtns.classList.add('disabled');
     })
-    return {getNameMarker, startGame, restartGame};
+    return {getNameMarker, startGame, restartGame, resetScore};
 })();
